@@ -1,0 +1,159 @@
+##
+## Main arguments, all optional
+##
+title: Main Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 7
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 0
+
+#rot: #ff5500
+#green: #aaff00
+#light blue: #00aaff
+#dark blue: #5500ff
+
+layout:
+    - default_dashboard, clock_default(5x1), climate_dashboard
+    - control_blinds, open_all_blinds, close_all_blinds
+    - cover_kitchen, cover_guest_room, cover_living_room_window, cover_living_room_door, cover_marie, cover_lisa, cover_parentsbedroom
+
+clock_default:
+    widget_type: clock
+    time_format: 24hr
+    show_seconds: 1
+    date_format_country: de
+    time_style: "color: light-grey"
+    date_format_options:
+      weekday: "long"
+      day: "numeric"
+      month: "long"
+    widget_size: 2x1
+
+control_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_enable_global
+    title: Control
+    title2: Blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+open_all_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_open_all_blinds_global
+    title: Open 
+    title2: all blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+close_all_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_close_all_blinds_global
+    title: Close
+    title2: all blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_kitchen:
+    widget_type: cover
+    title: Kitchen
+    entity: cover.kitchen_level
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_guest_room:
+    widget_type: cover
+    title: Guest Room
+    entity: cover.guest_room_level
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_living_room_window:
+    widget_type: cover
+    title: Living Room
+    title2: Window
+    entity: cover.living_room_window_level
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_living_room_door:
+    widget_type: cover
+    title: Living Room
+    title2: Door
+    entity: cover.living_room_door_level
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_marie:
+    widget_type: cover
+    title: Marie
+    entity: cover.mariecover
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_lisa:
+    widget_type: cover
+    title: Lisa
+    entity: cover.lisacover
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+cover_parentsbedroom:
+    widget_type: cover
+    title: Parents
+    entity: cover.parentsbedroom_level
+    icon_on: mdi-blinds
+    icon_off: mdi-blinds
+    #state_text: 1
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+climate_dashboard:
+    widget_type: navigate
+    title: Dashboard
+    title2: Climate 
+    dashboard: climate 
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+default_dashboard:
+    widget_type: navigate
+    title: Back to
+    title2: Main 
+    dashboard: default 
+    sticky: 0
+    icon_active: mdi-chevron-right
+    icon_inactive: mdi-chevron-left
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"

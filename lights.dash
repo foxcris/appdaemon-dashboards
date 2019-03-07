@@ -1,0 +1,118 @@
+##
+## Main arguments, all optional
+##
+title: Main Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 7
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 0
+
+#rot: #ff5500
+#green: #aaff00
+#light blue: #00aaff
+#dark blue: #5500ff
+
+layout:
+    - default_dashboard, clock_default(5x1), climate_dashboard
+    - light_livingroom, light_livingroom_cozy, light_livingroom_dimmed, light_livingroom_reading
+    - light_basementdownstairs, light_basementpantry
+
+clock_default:
+    widget_type: clock
+    time_format: 24hr
+    show_seconds: 1
+    date_format_country: de
+    time_style: "color: light-grey"
+    date_format_options:
+      weekday: "long"
+      day: "numeric"
+      month: "long"
+    widget_size: 2x1
+
+climate_dashboard:
+    widget_type: navigate
+    title: Dashboard
+    title2: Climate 
+    dashboard: climate 
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+default_dashboard:
+    widget_type: navigate
+    title: Back to
+    title2: Main 
+    dashboard: default 
+    sticky: 0
+    icon_active: mdi-chevron-right
+    icon_inactive: mdi-chevron-left
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+light_livingroom:
+    widget_type: switch
+    entity: input_boolean.light_livingroom
+    title: Light
+    title2: Livingroom
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_basementdownstairs:
+    widget_type: switch
+    entity: switch.basementstairsdownstairs_2
+    title: Basement
+    title2: Downstairs
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_basementpantry:
+    widget_type: switch
+    entity: switch.basementpantry
+    title: Basement
+    title2: Pantry
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_livingroom_cozy:
+    widget_type: switch
+    entity: input_boolean.light_livingroom_cozy
+    title: Livingroom
+    title2: Screne Cozy
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_livingroom_dimmed:
+    widget_type: switch
+    entity: input_boolean.light_livingroom_dimmed
+    title: Livingroom
+    title2: Screne Dimmed
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_livingroom_reading:
+    widget_type: switch
+    entity: input_boolean.light_livingroom_reading
+    title: Livingroom
+    title2: Screne Reading
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+

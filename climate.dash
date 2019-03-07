@@ -1,0 +1,131 @@
+##
+## Main arguments, all optional
+##
+title: Main Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 7
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 0
+
+#rot: #ff5500
+#green: #aaff00
+#light blue: #00aaff
+#dark blue: #5500ff
+
+layout:
+    - default_dashboard, clock_default(5x1), blinds_dashboard
+    - climate_guest_room
+    - climate_bath_room, climate_lisa, climate_marie, climate_parents
+    - climate_kitchen, climate_living_room, climate_guest_bath
+    - climate_basement
+
+clock_default:
+    widget_type: clock
+    time_format: 24hr
+    show_seconds: 1
+    date_format_country: de
+    time_style: "color: light-grey"
+    date_format_options:
+      weekday: "long"
+      day: "numeric"
+      month: "long"
+    widget_size: 2x1
+
+climate_kitchen:
+    widget_type: climate
+    entity: climate.kitchenwallthermostat
+    title: Kitchen
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_basement:
+    widget_type: climate
+    entity: climate.basementthermostat
+    title: Basement
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_guest_bath:
+    widget_type: climate
+    entity: climate.guestbaththermostat
+    title: Guest Bath
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_guest_room:
+    widget_type: climate
+    entity: climate.guestroomthermostat
+    title: Guest Room
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_living_room:
+    widget_type: climate
+    entity: climate.livingroomthermostat
+    title: Living Room
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_lisa:
+    widget_type: climate
+    entity: climate.lisathermostat
+    title: Lisa
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_marie:
+    widget_type: climate
+    entity: climate.mariethermostat
+    title: Marie
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_bath_room:
+    widget_type: climate
+    entity: climate.baththermostat
+    title: Bath Room
+    step: 0.5
+    units: °
+    precision: 1
+
+climate_parents:
+    widget_type: climate
+    entity: climate.parentsthermostat
+    title: Parents
+    step: 0.5
+    units: °
+    precision: 1
+
+blinds_dashboard:
+    widget_type: navigate
+    title: Goto Dashboard
+    title2: Blinds 
+    dashboard: blinds 
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+default_dashboard:
+    widget_type: navigate
+    title: Back to
+    title2: Main 
+    dashboard: default 
+    sticky: 0
+    icon_active: mdi-chevron-right
+    icon_inactive: mdi-chevron-left
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"

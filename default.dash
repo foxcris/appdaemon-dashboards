@@ -1,0 +1,232 @@
+##
+## Main arguments, all optional
+##
+title: Main Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 7
+global_parameters:
+    use_comma: 1
+    precision: 1
+    use_hass_icon: 0
+
+#rot: #ff5500
+#green: #aaff00
+#light blue: #00aaff
+#dark blue: #5500ff
+
+layout:
+    - blinds_dashboard, clock_default(5x1), climate_dashboard
+    - sensor_internet, weather_default(5x2),volker_presence
+    - sensor_power,katrin_presence
+    - control_blinds, open_all_blinds, close_all_blinds, control_vacuum, control_roborock, light_livingroom, lights_dashboard
+
+grafana_energy:
+    widget_type: iframe
+    img_list:
+      - http://home:3000/render/d-solo/_Vug5eAmk/home-assistant?orgId=1&panelId=4&from=1539261227845&to=1539282827845&var-Climate=climate.balconythermostat&width=1000&height=500&tz=Europe%2FBerlin
+    refresh: 300
+
+clock_default:
+    widget_type: clock
+    time_format: 24hr
+    show_seconds: 1
+    date_format_country: de
+    time_style: "color: light-grey"
+    date_format_options:
+      weekday: "long"
+      day: "numeric"
+      month: "long"
+    widget_size: 2x1
+
+weather_summary:
+    widget_type: weather_summary
+    entity: sensor.dark_sky_daily_summary
+
+weather_default:
+    widget_type: weather
+    title: Today
+    prefer_icons: 1
+    show_forecast: 1
+    forecast_title: Tomorrow
+    sensors:
+      icon: sensor.dark_sky_icon
+      temperature: sensor.dark_sky_temperature
+      apparent_temperature: sensor.dark_sky_apparent_temperature
+      humidity: sensor.dark_sky_humidity
+      precip_probability: sensor.dark_sky_precip_probability
+      precip_intensity: sensor.dark_sky_precip_intensity
+      precip_type: sensor.dark_sky_precip
+      pressure: sensor.dark_sky_pressure
+      wind_speed: sensor.dark_sky_wind_speed
+      wind_bearing: sensor.dark_sky_wind_bearing
+      forecast_icon: sensor.dark_sky_icon_1
+      forecast_temperature_min: sensor.dark_sky_overnight_low_temperature_1
+      forecast_temperature_max: sensor.dark_sky_daytime_high_temperature_1
+      forecast_precip_probability: sensor.dark_sky_precip_probability_1
+      forecast_precip_type: sensor.dark_sky_precip_1
+
+sensor_internet:
+    widget_type: icon
+    entity: sensor.fritz_netmonitor
+    title: Internet
+    icons:
+      "online":
+        icon: mdi-web
+        style: "color: #aaff00"
+      "offline":
+        icon: mdi-web
+        style: "color: #00aaff"
+
+control_vacuum:
+    widget_type: input_boolean
+    entity: input_boolean.vacuum_enable_global
+    title: Control
+    title2: Vacuum
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+control_roborock:
+    widget_type: input_boolean
+    entity: input_boolean.vacuum_roborock_start_cleaning
+    title: Start
+    title2: Roborock
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+control_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_enable_global
+    title: Control
+    title2: Blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+open_all_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_open_all_blinds_global
+    title: Open
+    title2: all blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+close_all_blinds:
+    widget_type: input_boolean
+    entity: input_boolean.control_blinds_close_all_blinds_global
+    title: Close
+    title2: all blinds
+    icon_on: mdi-radiobox-marked
+    icon_off: mdi-radiobox-blank
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+volker_presence:
+    title: Volker
+    widget_type: icon
+    entity: person.volker
+    state_text: 1
+    icons:
+      "home":
+        icon: mdi-account
+        style: "color: #aaff00"
+      "nothome":
+        icon: mdi-account
+        style: "color: #00aaff"
+
+
+katrin_presence:
+    title: Katrin
+    widget_type: icon
+    entity: person.katrin
+    state_text: 1
+    icons:
+      "home":
+        icon: mdi-account
+        style: "color: #aaff00"
+      "nothome":
+        icon: mdi-account
+        style: "color: #00aaff"
+
+sensor_power:
+    widget_type: gauge
+    entity: sensor.basementpowermeter_power
+    title: Energy
+    title2: consumption
+    min: 0
+    max: 15000
+    units: wh
+
+light_basementdownstairs:
+    widget_type: switch
+    entity: switch.basementstairsdownstairs_2
+    title: Basement
+    title2: Downstairs
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+light_basementpantry:
+    widget_type: switch
+    entity: switch.basementpantry
+    title: Basement
+    title2: Pantry
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
+
+blinds_dashboard:
+    widget_type: navigate
+    title: Goto Dashboard
+    title2: Blinds
+    dashboard: blinds
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+climate_dashboard:
+    widget_type: navigate
+    title: Goto Dashboard
+    title2: Climate
+    dashboard: climate
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+lights_dashboard:
+    widget_type: navigate
+    title: Goto Dashboard
+    title2: Lights
+    dashboard: lights
+    timeout: 30
+    return: default
+    icon_active: mdi-chevron-left
+    icon_inactive: mdi-chevron-right
+    icon_active_style: "color: #aaff00"
+    icon_inactive_style: "color: #00aaff"
+
+light_livingroom:
+    widget_type: switch
+    entity: input_boolean.light_livingroom
+    title: Light
+    title2: Livingroom
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #aaff00"
+    icon_style_inactive: "color: #00aaff"
